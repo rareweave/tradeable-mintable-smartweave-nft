@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "arweave": "^1.11.4",
+    "chalk": "^5.0.1",
+    "esbuild": "^0.14.49",
+    "replace-in-file": "^6.3.5",
+    "warp-contracts": "^1.1.10"
+  },
+  "name": "sw-multisig",
+  "bin": {
+    "sw-multisig": "./cli.js"
+  },
+  "version": "0.0.4",
+  "description": "Multisig for SmartWeave using FCP",
+  "main": "index.js",
+  "repository": "https://github.com/angrymouse/sw-multisig.git",
+  "author": "Nik <nik@hns.is>",
+  "license": "MIT",
+  "private": false
+}

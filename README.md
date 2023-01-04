@@ -1,0 +1,1 @@
+Run `npx sw-multisig`
