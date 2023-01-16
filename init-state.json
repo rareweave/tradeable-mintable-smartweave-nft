@@ -1,13 +1,20 @@
 {
-    "name":"SmartWeave FCP threshold signature wallet",
-    "threshold":2,
-    "powers":{
-        "udOL7D7qkfFyfnkxfRQA0r1Eoz1-XRwUOSLfiCFee38":1,
-        "AXC6ZiAM8ETk7oHinAwy6Ggf0hbne-Psv96qCXy4ZEQ":1,
-        "5V_c-XrpMnP7nqpY3XWMjIq-NTYH60_vZQ9N8JwXj1w":1
+    "owner": "cONE0Zjum8zaY_nIkaOZl-8Y6gSTnYE-91sgzXvvCMM",
+    "title": "RareWeave NFT template",
+    "name": "RareWeave template",
+    "description": "Best",
+    "ticker": "RWNFT",
+    "balances": {
+        "cONE0Zjum8zaY_nIkaOZl-8Y6gSTnYE-91sgzXvvCMM": 1
     },
-    "proposals":{},
-    "foreignCalls":[],
-    "canEvolve": true,
-    "evolve": null
+    "contentType": "image/jpeg",
+    "createdAt": "1628810641085",
+    "tags": [],
+    "evolve": null,
+    "lockFee": 500000000000,
+    "forSale": false,
+    "price": 0,
+    "reservationBlockHeight": 0,
+    "reserver": null,
+    "reservationTxId": null
 }
