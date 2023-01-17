@@ -22,8 +22,9 @@ const jwk = require("./.secrets/jwk.json");
   const contractTxId = await warp.createContract.deploy({
     wallet: jwk,
     initState: initialState,
+    data: { 'Content-Type': 'image/png', body: fs.readFileSync("./pfp.png") },
     src: contractSrc
-  });
+  }, true);
   console.log(contractTxId)
-  console.log("Deployment completed.\nContract address:" + contractTxId.contractTxId+"\nCode address:"+contractTxId.srcTxId);
+  console.log("Deployment completed.\nContract address:" + contractTxId.contractTxId + "\nCode address:" + contractTxId.srcTxId);
 })();
