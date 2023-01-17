@@ -11,7 +11,8 @@ export async function handle(state, action) {
         "balance": require("./functions/balance.js"),
         "change-price": require("./functions/change-price.js"),
         "reserve-buying-zone": require("./functions/reserve-buying-zone.js"),
-        "unlist": require("./functions/unlist.js")
+        "unlist": require("./functions/unlist.js"),
+        "finalize-buy": require("./functions/finalize-buy.js")
     })[input.function] || (function invalidFunc() { throw new ContractError("Invalid function") }))(state, action)
 
 
