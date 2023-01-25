@@ -4,7 +4,7 @@
     "chalk": "^5.0.1",
     "esbuild": "^0.14.49",
     "replace-in-file": "^6.3.5",
-    "warp-contracts": "^1.1.10"
+    "warp-contracts": "^1.2.48"
   },
   "name": "sw-multisig",
   "bin": {

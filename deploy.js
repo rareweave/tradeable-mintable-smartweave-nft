@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const Arweave = require("arweave");
-const { WarpNodeFactory } = require("warp-contracts");
+const Warp = require('warp-contracts');
 const jwk = require("./.secrets/jwk.json");
 
 (async () => {
@@ -11,20 +11,22 @@ const jwk = require("./.secrets/jwk.json");
 
   // Arweave and Warp initialization
   const arweave = Arweave.init({
-    host: "arweave.dev",
+    host: "arweave.net",
     port: 443,
     protocol: "https",
   });
-  const warp = WarpNodeFactory.memCached(arweave);
+  const warp = Warp.WarpFactory.forMainnet()
 
   // Deploying contract
   console.log("Deployment started");
-  const contractTxId = await warp.createContract.deploy({
+  const contractTxId = await warp.deploy({
+
     wallet: jwk,
     initState: initialState,
-    data: { 'Content-Type': 'image/png', body: fs.readFileSync("./pfp.png") },
+    // data: { 'Content-Type': 'image/png', body: fs.readFileSync("./pfp.png") },
     src: contractSrc
   }, true);
+  console.log()
   console.log(contractTxId)
-  console.log("Deployment completed.\nContract address:" + contractTxId.contractTxId + "\nCode address:" + contractTxId.srcTxId);
+  console.log("Deployment completed.\nDeployer:" + await arweave.wallets.getAddress(jwk) + "\nContract address:" + contractTxId.contractTxId + "\nCode address:" + contractTxId.srcTxId);
 })();
