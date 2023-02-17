@@ -1,10 +1,10 @@
-import transfer from "./functions/transfer.js";
-import list from "./functions/list.js";
-import balance from "./functions/balance.js";
-import changePrice from "./functions/change-price.js";
-import reserveBuyingZone from "./functions/reserve-buying-zone.js";
-import unlist from "./functions/unlist.js";
-import finalizeBuy from "./functions/finalize-buy.js";
+const transfer = require("./functions/transfer.js");
+const list = require("./functions/list.js");
+const balance = require("./functions/balance.js");
+const changePrice = require("./functions/change-price.js");
+const reserveBuyingZone = require("./functions/reserve-buying-zone.js");
+const unlist = require("./functions/unlist.js");
+const finalizeBuy = require("./functions/finalize-buy.js");
 
 export async function handle(state, action) {
   const { input, caller } = action;
