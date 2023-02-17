@@ -31,7 +31,9 @@ async function deployContract() {
   const { contractTxId, srcTxId } = deployResult;
   console.log(`Deployment completed.\nDeployer: ${walletAddress}\nContract address: ${contractTxId}\nCode address: ${srcTxId}`);
 
-  return deployResult;
+  // Displaying the deployed contract code
+  const contractCode = await arweave.transactions.getData(srcTxId, { decode: true, string: true });
+  console.log(`Deployed contract code:\n${contractCode}`);
 }
 
 deployContract();
