@@ -12,28 +12,29 @@ const arweave = Arweave.init({
 });
 
 async function deployContract() {
-  // Loading contract source and initial state from files
-  const contractSrc = fs.readFileSync(path.join(__dirname, "./dist/contract.js"), "utf8");
-  const initialState = fs.readFileSync(path.join(__dirname, "./init-state.json"), "utf8");
+  try {
+    // Loading contract source and initial state from files
+    const contractSrc = fs.readFileSync(path.join(__dirname, "./dist/contract.js"), "utf8");
+    const initialState = fs.readFileSync(path.join(__dirname, "./init-state.json"), "utf8");
 
-  // Warp initialization
-  const warp = Warp.WarpFactory.forMainnet();
-  const walletAddress = await arweave.wallets.getAddress(jwk);
-  console.log(`Deploying contract for address ${walletAddress}`);
-  
-  // Deploying contract
-  const deployResult = await warp.deploy({
-    wallet: jwk,
-    src: contractSrc,
-    initState: initialState,
-  }, true);
+    // Warp initialization
+    const warp = Warp.WarpFactory.forMainnet();
+    const walletAddress = await arweave.wallets.getAddress(jwk);
+    console.log(`Deploying contract for address ${walletAddress}`);
 
-  const { contractTxId, srcTxId } = deployResult;
-  console.log(`Deployment completed.\nDeployer: ${walletAddress}\nContract address: ${contractTxId}\nCode address: ${srcTxId}`);
+    // Deploying contract
+    const deployResult = await warp.deploy({
+      wallet: jwk,
+      src: contractSrc,
+      initState: initialState,
+    }, true);
 
-  // Displaying the deployed contract code
-  const contractCode = await arweave.transactions.getData(srcTxId, { decode: true, string: true });
-  console.log(`Deployed contract code:\n${contractCode}`);
+    const { contractTxId, srcTxId } = deployResult;
+    console.log(`Deployment completed.\nDeployer: ${walletAddress}\nContract address: ${contractTxId}\nContract code address: ${srcTxId}`);
+
+  } catch (error) {
+    console.error("Failed to deploy contract:", error);
+  }
 }
 
 deployContract();
