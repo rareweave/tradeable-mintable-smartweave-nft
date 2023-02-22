@@ -4,29 +4,37 @@ const Arweave = require("arweave");
 const Warp = require('warp-contracts');
 const jwk = require("./.secrets/jwk.json");
 
-(async () => {
-  // Loading contract source and initial state from files
-  const contractSrc = fs.readFileSync(path.join(__dirname, "./dist/contract.js"), "utf8");
-  const initialState = fs.readFileSync(path.join(__dirname, "./init-state.json"), "utf8");
+// Arweave initialization
+const arweave = Arweave.init({
+  host: "arweave.net",
+  port: 443,
+  protocol: "https",
+});
 
-  // Arweave and Warp initialization
-  const arweave = Arweave.init({
-    host: "arweave.net",
-    port: 443,
-    protocol: "https",
-  });
-  const warp = Warp.WarpFactory.forMainnet()
+async function deployContract() {
+  try {
+    // Loading contract source and initial state from files
+    const contractSrc = fs.readFileSync(path.join(__dirname, "./dist/contract.js"), "utf8");
+    const initialState = fs.readFileSync(path.join(__dirname, "./init-state.json"), "utf8");
 
-  // Deploying contract
-  console.log("Deployment started");
-  const contractTxId = await warp.deploy({
+    // Warp initialization
+    const warp = Warp.WarpFactory.forMainnet();
+    const walletAddress = await arweave.wallets.getAddress(jwk);
+    console.log(`Deploying contract for address ${walletAddress}`);
 
-    wallet: jwk,
-    initState: initialState,
-    // data: { 'Content-Type': 'image/png', body: fs.readFileSync("./pfp.png") },
-    src: contractSrc
-  }, true);
-  console.log()
-  console.log(contractTxId)
-  console.log("Deployment completed.\nDeployer:" + await arweave.wallets.getAddress(jwk) + "\nContract address:" + contractTxId.contractTxId + "\nCode address:" + contractTxId.srcTxId);
-})();
+    // Deploying contract
+    const deployResult = await warp.deploy({
+      wallet: jwk,
+      src: contractSrc,
+      initState: initialState,
+    }, true);
+
+    const { contractTxId, srcTxId } = deployResult;
+    console.log(`Deployment completed.\nDeployer: ${walletAddress}\nContract address: ${contractTxId}\nContract code address: ${srcTxId}`);
+
+  } catch (error) {
+    console.error("Failed to deploy contract:", error);
+  }
+}
+
+deployContract();
