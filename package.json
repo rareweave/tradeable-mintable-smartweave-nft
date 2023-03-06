@@ -6,14 +6,11 @@
     "replace-in-file": "^6.3.5",
     "warp-contracts": "^1.2.48"
   },
-  "name": "sw-multisig",
-  "bin": {
-    "sw-multisig": "./cli.js"
-  },
+  "name": "tmswnft",
   "version": "0.0.4",
-  "description": "Multisig for SmartWeave using FCP",
+  "description": "Tradeable Mintable smartweave NFT",
   "main": "index.js",
-  "repository": "https://github.com/angrymouse/sw-multisig.git",
+  "repository": "https://github.com/angrymouse/tradeable-mintable-smartweave-nft.git",
   "author": "Nik <nik@hns.is>",
   "license": "MIT",
   "private": false
