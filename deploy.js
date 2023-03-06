@@ -27,6 +27,7 @@ async function deployContract() {
       wallet: jwk,
       src: contractSrc,
       initState: initialState,
+      data: { 'Content-Type': 'image/png', body: fs.readFileSync("./pfp.png") },
     }, true);
 
     const { contractTxId, srcTxId } = deployResult;
