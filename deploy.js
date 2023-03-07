@@ -15,18 +15,20 @@ async function deployContract() {
   try {
     // Loading contract source and initial state from files
     const contractSrc = fs.readFileSync(path.join(__dirname, "./dist/contract.js"), "utf8");
-    const initialState = fs.readFileSync(path.join(__dirname, "./init-state.json"), "utf8");
+    const initialState = JSON.parse(fs.readFileSync(path.join(__dirname, "./init-state.json"), "utf8"))
+
 
     // Warp initialization
     const warp = Warp.WarpFactory.forMainnet();
     const walletAddress = await arweave.wallets.getAddress(jwk);
+    initialState.minter = walletAddress
     console.log(`Deploying contract for address ${walletAddress}`);
 
     // Deploying contract
     const deployResult = await warp.deploy({
       wallet: jwk,
       src: contractSrc,
-      initState: initialState,
+      initState: JSON.stringify(initialState),
       data: { 'Content-Type': 'image/png', body: fs.readFileSync("./pfp.png") },
     }, true);
 

@@ -16,5 +16,6 @@
     "price": 0,
     "reservationBlockHeight": 0,
     "reserver": null,
-    "reservationTxId": null
+    "reservationTxId": null,
+    "royalty": 0.03
 }
