@@ -5,6 +5,7 @@ const changePrice = require("./functions/change-price.js");
 const reserveBuyingZone = require("./functions/reserve-buying-zone.js");
 const unlist = require("./functions/unlist.js");
 const finalizeBuy = require("./functions/finalize-buy.js");
+const editNft = require("./functions/edit-nft.js");
 
 export async function handle(state, action) {
   const { input, caller } = action;
@@ -21,6 +22,7 @@ export async function handle(state, action) {
     "reserve-buying-zone": reserveBuyingZone,
     "unlist": unlist,
     "finalize-buy": finalizeBuy,
+    "edit-nft": editNft
   };
 
   const selectedFunction = functionMap[input.function];
