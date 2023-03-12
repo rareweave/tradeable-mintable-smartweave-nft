@@ -1,4 +1,4 @@
-export async function handle(state, action) {
+module.exports = async function (state, action) {
   const reservationTxId = state.reservationTxId;
   const reservationBlockHeight = state.reservationBlockHeight;
   const { input, caller } = action;

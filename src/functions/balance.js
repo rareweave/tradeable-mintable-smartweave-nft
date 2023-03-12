@@ -1,4 +1,4 @@
-export async function handle(state, action) {
+module.exports = async function handle(state, action) {
   const { input, caller } = action;
   const { target } = input || {};
 

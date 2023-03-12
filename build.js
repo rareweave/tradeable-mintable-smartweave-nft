@@ -5,9 +5,7 @@ const contracts = ['/contract.js'];
 
 // Build and bundle the contract code
 build({
-  entryPoints: contracts.map((source) => {
-    return `./src${source}`;
-  }),
+  entryPoints: ["./src/contract.js"],
   outdir: './dist',
   minify: false,
   bundle: true,
