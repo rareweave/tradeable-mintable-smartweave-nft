@@ -1,4 +1,4 @@
-module.exports = async function(state, action) {
+module.exports = async function (state, action) {
   const owner = SmartWeave.transaction.owner;
   const caller = action.caller;
   const input = action.input;
@@ -13,7 +13,7 @@ module.exports = async function(state, action) {
   );
   ContractAssert(
     state.reservationTxId &&
-      SmartWeave.block.height - state.reservationBlockHeight < 15,
+    SmartWeave.block.height - state.reservationBlockHeight < 15,
     "NFT is not reserved for buy"
   );
   ContractAssert(
@@ -25,7 +25,7 @@ module.exports = async function(state, action) {
     "Wanted price doesn't match listing price"
   );
   ContractAssert(
-    SmartWeave.transaction.target == caller && SmartWeave.transaction.quantity == state.price,
+    SmartWeave.transaction.target == owner && SmartWeave.transaction.quantity == state.price,
     "Invalid transfer"
   );
 
