@@ -1,5 +1,5 @@
 module.exports = async function (state, action) {
-  const owner = SmartWeave.transaction.owner;
+
   const caller = action.caller;
   const input = action.input;
 
@@ -8,7 +8,7 @@ module.exports = async function (state, action) {
     "NFT is not listed for sale"
   );
   ContractAssert(
-    state.reserver == owner,
+    state.reserver == caller,
     "Only the reserver can finalize the buy"
   );
   ContractAssert(
@@ -25,7 +25,7 @@ module.exports = async function (state, action) {
     "Wanted price doesn't match listing price"
   );
   ContractAssert(
-    SmartWeave.transaction.target == owner && SmartWeave.transaction.quantity == state.price,
+    SmartWeave.transaction.target == state.owner && SmartWeave.transaction.quantity == state.price,
     "Invalid transfer"
   );
 
