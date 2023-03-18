@@ -3,6 +3,7 @@ const path = require("path");
 const Arweave = require("arweave");
 const Warp = require('warp-contracts');
 const jwk = require("./.secrets/jwk.json");
+const { DeployPlugin } = require('warp-contracts-plugin-deploy');
 
 // Arweave initialization
 const arweave = Arweave.init({
@@ -19,7 +20,7 @@ async function deployContract() {
 
 
     // Warp initialization
-    const warp = Warp.WarpFactory.forMainnet();
+    const warp = Warp.WarpFactory.forMainnet().use(new DeployPlugin());;
     const walletAddress = await arweave.wallets.getAddress(jwk);
     initialState.minter = walletAddress
     console.log(`Deploying contract for address ${walletAddress}`);
