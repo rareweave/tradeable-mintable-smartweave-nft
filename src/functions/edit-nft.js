@@ -9,6 +9,5 @@ module.exports = async function (state, action) {
     state.price = action.input.price;
     state.description = action.input.description;
     state.forSale = action.input.forSale;
-    state.updatedAt = Date.now();
     return { state };
 };
