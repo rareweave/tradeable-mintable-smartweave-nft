@@ -9,9 +9,7 @@ const finalizeBuy = require("./functions/finalize-buy.js");
 const editNft = require("./functions/edit-nft.js");
 
 export async function handle(state, action) {
-  const { input, caller } = action;
-
-  if (!input || typeof input !== "object" || typeof input.function !== "string") {
+  if (!action.input || typeof action.input !== "object" || typeof action.input.function !== "string") {
     throw new ContractError("Invalid input");
   }
 
@@ -26,10 +24,14 @@ export async function handle(state, action) {
     "edit-nft": editNft
   };
 
-  const selectedFunction = functionMap[input.function];
+  const selectedFunction = functionMap[action.input.function];
   if (!selectedFunction) {
-    throw new ContractError("Invalid function");
+    throw new ContractError(`Function '${action.input.function}' not found`);
   }
 
-  return await selectedFunction(state, action);
+  try {
+    return await selectedFunction(state, action);
+  } catch (error) {
+    throw new ContractError(`Error executing function '${action.input.function}': ${error.message}`);
+  }
 }
