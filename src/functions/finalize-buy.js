@@ -3,9 +3,13 @@ module.exports = async function (state, action) {
   ContractAssert(state.reserver == action.caller, "Only the reserver can finalize the buy");
   ContractAssert(state.reservationTxId && SmartWeave.block.height - state.reservationBlockHeight < 15, "NFT is not reserved for buy");
   ContractAssert(state.reservationTxId == action.input.reservationTxId, "Provided reservation txid is invalid");
-  ContractAssert(BigInt(action.input.price) >= BigInt(state.price), "Wanted price doesn't match listing price");
-  ContractAssert(SmartWeave.transaction.target == state.owner && BigInt(SmartWeave.transaction.quantity) >= BigInt(state.price), "Invalid transfer");
-
+  ContractAssert(SmartWeave.extensions[state.listingChain] && typeof SmartWeave.extensions[state.listingChain].readTxById == "function", "No " + state.listingChain + " plugin installed.")
+  // ContractAssert(BigInt(action.input.price) >= BigInt(state.price), "Wanted price doesn't match listing price");
+  // ContractAssert(SmartWeave.transaction.target == state.owner && BigInt(SmartWeave.transaction.quantity) >= BigInt(state.price), "Invalid transfer");
+  ContractAssert(typeof action.input.transferTxID == "string", "No transfer tx")
+  let fetchedTransferTx = await SmartWeave.extensions[state.listingChain].readTxById(action.input.transferTxID)
+  ContractAssert(fetchedTransferTx.to == state.listingAddress, "Invalid transfer (address)")
+  ContractAssert(BigInt(fetchedTransferTx.amount) >=BigInt(state.price), "Invalid royalty transfer amount")
   state.reservationBlockHeight = 0;
   state.reservationTxId = null;
   state.reserver = null;

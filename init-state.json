@@ -16,5 +16,12 @@
     "reservationBlockHeight": 0,
     "reserver": null,
     "reservationTxId": null,
-    "royalty": 0.03
+    "royalty": 0.03,
+    "royaltyAddresses":{
+        "arweave":"udOL7D7qkfFyfnkxfRQA0r1Eoz1-XRwUOSLfiCFee38",
+        "everpay":"udOL7D7qkfFyfnkxfRQA0r1Eoz1-XRwUOSLfiCFee38"
+    },
+    "listingAddress":"udOL7D7qkfFyfnkxfRQA0r1Eoz1-XRwUOSLfiCFee38",
+    "listingChain":"everpay",
+    "listingCoin":"AR"
 }
