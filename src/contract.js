@@ -1,8 +1,7 @@
 
 const transfer = require("./functions/transfer.js");
 const list = require("./functions/list.js");
-const balance = require("./functions/balance.js");
-const changePrice = require("./functions/change-price.js");
+const balance = require("./functions/balance.js");;
 const reserveBuyingZone = require("./functions/reserve-buying-zone.js");
 const unlist = require("./functions/unlist.js");
 const finalizeBuy = require("./functions/finalize-buy.js");
@@ -17,7 +16,6 @@ export async function handle(state, action) {
     "transfer": transfer,
     "list": list,
     "balance": balance,
-    "change-price": changePrice,
     "reserve-buying-zone": reserveBuyingZone,
     "unlist": unlist,
     "finalize-buy": finalizeBuy,
