@@ -9,6 +9,7 @@ module.exports = async function (state, action) {
   ContractAssert(typeof action.input.transferTxID == "string", "No transfer tx")
   let fetchedTransferTx = await SmartWeave.extensions[state.listingChain].readTxById(action.input.transferTxID)
   ContractAssert(fetchedTransferTx.to == state.listingAddress, "Invalid transfer (address)")
+  ContractAssert(fetchedRoyaltyTx.coin == state.listingCoin, "Incorrect transfer coin")
   ContractAssert(BigInt(fetchedTransferTx.amount) >=BigInt(state.price), "Invalid royalty transfer amount")
   state.reservationBlockHeight = 0;
   state.reservationTxId = null;
