@@ -1,27 +1,27 @@
 {
-    "owner": "cONE0Zjum8zaY_nIkaOZl-8Y6gSTnYE-91sgzXvvCMM",
+    "owner": "KTJmuLHBwUhw47UJo69b2v1vfWMfn1eG9BcJ0CxBVEQ",
     "title": "RareWeave NFT template",
     "name": "RareWeave template",
     "description": "Best",
     "ticker": "RWNFT",
     "balances": {
-        "cONE0Zjum8zaY_nIkaOZl-8Y6gSTnYE-91sgzXvvCMM": 1
+        "KTJmuLHBwUhw47UJo69b2v1vfWMfn1eG9BcJ0CxBVEQ": 1
     },
     "contentType": "image/jpeg",
     "createdAt": "1628810641085",
     "tags": [],
     "evolve": null,
     "forSale": true,
-    "price": "1000000000000",
-    "reservationBlockHeight": 0,
+    "price": "10000000000",
+    "reservationTimestamp": 0,
     "reserver": null,
     "reservationTxId": null,
     "royalty": 0.03,
     "royaltyAddresses":{
-        "arweave":"udOL7D7qkfFyfnkxfRQA0r1Eoz1-XRwUOSLfiCFee38",
-        "everpay":"udOL7D7qkfFyfnkxfRQA0r1Eoz1-XRwUOSLfiCFee38"
+        "arweave":"KTJmuLHBwUhw47UJo69b2v1vfWMfn1eG9BcJ0CxBVEQ",
+        "everpay":"KTJmuLHBwUhw47UJo69b2v1vfWMfn1eG9BcJ0CxBVEQ"
     },
-    "listingAddress":"udOL7D7qkfFyfnkxfRQA0r1Eoz1-XRwUOSLfiCFee38",
+    "listingAddress":"KTJmuLHBwUhw47UJo69b2v1vfWMfn1eG9BcJ0CxBVEQ",
     "listingChain":"everpay",
     "listingCoin":"AR"
 }

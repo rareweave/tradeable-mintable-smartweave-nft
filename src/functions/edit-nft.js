@@ -1,5 +1,5 @@
 module.exports = async function (state, action) {
-    ContractAssert(!state.reservationTxId || (SmartWeave.block.height - state.reservationBlockHeight) > 15, "NFT is reserved for buy");
+    ContractAssert(!state.reservationTxId || (SmartWeave.transaction.timestamp - state.reservationTimestamp) > 600000, "NFT is reserved for buy");
     ContractAssert(state.owner === action.caller, "Caller should own NFT");
     ContractAssert((typeof action.input.price == "number" || typeof action.input.price == "string") && BigInt(action.input.price) > 1n, "Invalid price: must be a positive number");
     ContractAssert(typeof action.input.description == "string", "Description should be string");

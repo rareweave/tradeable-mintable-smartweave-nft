@@ -1,10 +1,10 @@
 module.exports = async function (state, action) {
   const reservationTxId = state.reservationTxId;
-  const reservationBlockHeight = state.reservationBlockHeight;
+  const reservationTimestamp = state.reservationTimestamp;
   const { input, caller } = action;
   const target = input.target;
 
-  ContractAssert(!reservationTxId || SmartWeave.block.height - reservationBlockHeight > 15, "NFT is reserved for buy");
+  ContractAssert(!reservationTxId || SmartWeave.transaction.timestamp - reservationTimestamp > 600000, "NFT is reserved for buy");
   ContractAssert(target, "No target specified.");
   ContractAssert(caller !== target, "Invalid token transfer.");
 
