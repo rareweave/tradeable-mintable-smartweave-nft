@@ -10,7 +10,8 @@ module.exports = async function (state, action) {
   let fetchedTransferTx = await SmartWeave.extensions[state.listingChain].readTxById(action.input.transferTxID)
   ContractAssert(fetchedTransferTx.to == state.listingAddress, "Invalid transfer (address)")
   ContractAssert(fetchedTransferTx.coin == state.listingCoin, "Incorrect transfer coin")
-  ContractAssert(BigInt(fetchedTransferTx.amount) >=BigInt(state.price), "Invalid royalty transfer amount")
+  ContractAssert(BigInt(fetchedTransferTx.amount) >= BigInt(state.price), "Invalid royalty transfer amount")
+  ContractAssert(await SmartWeave.extensions[state.listingChain].verifySignature(fetchedRoyaltyTx.from, "Sign to confirm transaction " + action.input.transferTxID + " as payment for NFT to address " + action.caller, action.input.signature), "No signature present")
   state.reservationTimestamp = 0;
   state.reservationTxId = null;
   state.reserver = null;
